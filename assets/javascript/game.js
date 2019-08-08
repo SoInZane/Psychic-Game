@@ -1,21 +1,52 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
-    var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var letters = "abcdefghijklmnopqrstuvwxyz";
     var win = 0;
     var lose = 0;
+    var guessesLeft = 10;
+    var guessedLetters = [];
+    var randomLetter = randomLetter;
 
-    const wins = document.getElementById('wins');
-    const loss = document.getElementById('loss');
+    var randomLetter = letters[Math.floor(Math.random() * letters.length)];
+    console.log(randomLetter);
 
-    for (var i = 0; i < letters.length; i++){
-
-
-
+    function pyschicGuess() {
+        randomLetter = letters[Math.floor(Math.random() * letters.length)];
+        console.log(randomLetter);
     }
 
 
+    document.onkeyup = function (event) {
+        var userGuess = event.key;
 
+        if (userGuess === randomLetter) {
+            won++;
+            guessesLeft = 10;
+            guessedLetters = [];
 
+        }
 
+        if (userGuess !== randomLetter) {
+            guessesLeft --;
 
-}
+        }
+
+        if (guessesLeft == 0) {
+            lost++;
+            guessedLetters = [];
+            guessesLeft = 10;
+
+        }
+
+        if (guessedLetters.indexOf(userGuess) >= 0) {
+            
+        } else {
+            guessedLetters.push(userGuess);
+            document.getElementById("userGuess").interHTML = guessedLetters;
+            console.log(guessedLetters);
+        }
+
+        document.getElementById('wins').innerHTML = win;
+        document.getElementById('lossses').innerHTML = lose;
+        document.getElementById('guesses-left').innerHTML = guessesLeft;
+    }
