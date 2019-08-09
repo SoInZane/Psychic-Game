@@ -1,52 +1,51 @@
-// $(document).ready(function(){
+// The specific letters that the user typed.
+var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-    var letters = "abcdefghijklmnopqrstuvwxyz";
-    var win = 0;
-    var lose = 0;
-    var guessesLeft = 10;
-    var guessedLetters = [];
-    var randomLetter = randomLetter;
-
-    var randomLetter = letters[Math.floor(Math.random() * letters.length)];
-    console.log(randomLetter);
-
-    function pyschicGuess() {
-        randomLetter = letters[Math.floor(Math.random() * letters.length)];
-        console.log(randomLetter);
-    }
+// Variables for counts
+var wins = 0;
+var losses = 0;
+var guessesLeft = 10;
+var letterUser = [];
 
 
-    document.onkeyup = function (event) {
-        var userGuess = event.key;
+// Sets the computerGuess variable equal to a random choice from the computerChoice array.
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-        if (userGuess === randomLetter) {
-            won++;
-            guessesLeft = 10;
-            guessedLetters = [];
+function countGuessesLeft() {
+	document.querySelector("#guesses-left").innerHTML = " " + guessesLeft;
+}
 
-        }
+function getUserGuesses() {
+	document.querySelector("#guesses").innerHTML = " " + letterUser.join(' ');
+}
 
-        if (userGuess !== randomLetter) {
-            guessesLeft --;
+countGuessesLeft();
 
-        }
+var restart = function() {
+	guessesLeft = 10;
+	letterUser = [];
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    console.log(computerGuess)
+}
 
-        if (guessesLeft == 0) {
-            lost++;
-            guessedLetters = [];
-            guessesLeft = 10;
+// When the user presses a key, it will run the function
+document.onkeyup = function(event) {
+    guessesLeft--;
+    
+    var userGuess = event.key.toLowerCase();
 
-        }
+	letterUser.push(userGuess);
+	countGuessesLeft();
+	getUserGuesses();
 
-        if (guessedLetters.indexOf(userGuess) >= 0) {
-            
-        } else {
-            guessedLetters.push(userGuess);
-            document.getElementById("userGuess").interHTML = guessedLetters;
-            console.log(guessedLetters);
-        }
-
-        document.getElementById('wins').innerHTML = win;
-        document.getElementById('lossses').innerHTML = lose;
-        document.getElementById('guesses-left').innerHTML = guessesLeft;
-    }
+	if (userGuess === computerGuess){
+		wins++;
+		document.querySelector("#wins").innerHTML = " " + wins;
+		restart();
+	} 
+	else if (guessesLeft === 0) {
+		losses++;
+		document.querySelector("#losses").innerHTML = " " + losses;
+		restart();
+	}
+  };
