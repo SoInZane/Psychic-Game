@@ -25,7 +25,6 @@ var restart = function() {
 	guessesLeft = 10;
 	letterUser = [];
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    console.log(computerGuess)
 }
 
 // When the user presses a key, it will run the function
@@ -41,11 +40,13 @@ document.onkeyup = function(event) {
 	if (userGuess === computerGuess){
 		wins++;
 		document.querySelector("#wins").innerHTML = " " + wins;
+		alert("You guessed my letter! Good job!");
 		restart();
 	} 
 	else if (guessesLeft === 0) {
 		losses++;
 		document.querySelector("#losses").innerHTML = " " + losses;
+		alert("Sorry, but you have ran out of guesses! Better luck next game!")
 		restart();
 	}
   };
