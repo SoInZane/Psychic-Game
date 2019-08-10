@@ -1,5 +1,6 @@
 body{
     background: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .main-container{
@@ -11,7 +12,9 @@ body{
 #container{
     color: yellow;
     text-align: center;
-    border: solid white;
+    padding: 20px;
+    height: 200px;
+    margin: auto;
 }
 
 #main-image{
@@ -21,7 +24,9 @@ height: 50%;
 
 h1{
     color: white;
+    font-size: 24px;
 }
 h2{
     color: rgb(70, 128, 204);
+    font-size: 20px;
 }
