@@ -4,7 +4,7 @@ var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l
 // Variables for counts
 var wins = 0;
 var losses = 0;
-var guessesLeft = 10;
+var guessesLeft = 9;
 var letterUser = [];
 
 
@@ -22,7 +22,7 @@ function getUserGuesses() {
 countGuessesLeft();
 
 var restart = function() {
-	guessesLeft = 10;
+	guessesLeft = 9;
 	letterUser = [];
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 }
